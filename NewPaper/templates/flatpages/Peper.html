@@ -1,0 +1,54 @@
+{% extends 'flatpages/default.html' %}
+{% load filters %}
+{% block title %}
+Mews
+{% endblock title %}
+
+{% block content %}
+<h2>Разновидность</h2>
+{{ Peper.date_pub|date:'d M Y H:i'}}
+<hr>
+    <table>
+            <tr>
+                <td>
+                    Дата публикации
+                </td>
+                <td>
+                    Название
+                </td>
+                <td>
+                    Автор
+                </td>
+                <td>
+                    Категория
+                </td>
+                <td>
+                    Описание
+                </td>
+                <td>
+                    Цена
+                </td>
+                <tr>
+
+                <td>
+                    {{ Peper.date_pub|date:'d M Y H:i'}}
+                </td>
+                <td>
+                    {{ Peper.name}}
+                </td>
+                <td>
+                    {{ Peper.User}}
+                </td>
+                <td>
+                    {{ Peper.category}}
+                </td>
+                <td>
+                    {{ Peper.description}}
+                </td>
+                <td>
+                    {{ Peper.price}}
+                </td>
+            </tr>
+
+    </table>
+{% endblock content %}

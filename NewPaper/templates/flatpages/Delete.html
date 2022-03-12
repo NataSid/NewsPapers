@@ -1,0 +1,53 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %} Удаление {% endblock title %}
+
+{% block content %}
+<h2>Вы действительно хотите удалить данный товар?</h2>
+<table>
+    <thead>
+        <th>
+            Название
+        </th>
+        <th>
+            Дата публикации
+        </th>
+        <th>
+            Автор
+        </th>
+        <th>
+            Категория
+        </th>
+        <th>
+            Описание
+        </th>
+        <th>
+            Цена
+        </th>
+    </thead>
+    <tr>
+        <td>
+            {{ News.name}}
+        </td>
+        <td>
+            {{ News.date_pub|date:'d M Y H:i'}}
+        </td>
+        <td>
+            {{ News.User}}
+        </td>
+        <td>
+            {{ News.category}}
+        </td>
+        <td>
+            {{ News.description}}
+        </td>
+        <td>
+            {{ News.price}}
+        </td>
+    </tr>
+</table>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="подтвердить"></form>
+{% endblock content %}

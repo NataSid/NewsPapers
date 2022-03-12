@@ -1,0 +1,48 @@
+{% extends 'flatpages/default.html' %}
+{% load filters %}
+{% block title %}
+News
+{% endblock title %}
+
+{% block content %}
+    <hr>
+<!-- Перед таблицей добавим форму для поиска -->
+<form method="GET">
+    {{ filter.form }} <!-- Форму от фильтров за нас сделает django. А вот кнопку, увы придётся делать самому -->
+    <input type="submit" value="Найти">
+</form>
+
+        <table>
+            <tr>
+                <td>
+                    Дата публикации
+                </td>
+                <td>
+                    Автор
+                </td>
+                <td>
+                    Название
+                </td>
+                <td>
+                    Цена
+                </td>
+            {% for Peper in filter.qs %}
+            <tr>
+                <td>
+                    {{ Peper.date_pub|date:'d-M-Y H:m'}}
+                </td>
+                <td>
+                    {{ Peper.User}}
+                </td>
+                <td>
+                    {{ Peper.name}}
+                </td>
+                <td>
+                    {{ Peper.price}}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+{% endblock content %}
+
