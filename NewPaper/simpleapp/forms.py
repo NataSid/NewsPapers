@@ -8,4 +8,12 @@ class NewsForm(ModelForm):
 
     class Meta:
         model = News
-        fields = ['name', 'price', 'category', 'quantity', 'description', 'User', 'check_box']
+        fields = ['name',
+                  'price',
+                  'category',
+                  'quantity',
+                  'description',
+                  'User',
+                  'check_box'
+                  ]
+

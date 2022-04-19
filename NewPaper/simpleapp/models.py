@@ -15,8 +15,8 @@ class Category(models.Model):
 
 
 class News(models.Model):
-    User = models.CharField(max_length=20, verbose_name='Автор')
-    name = models.CharField(max_length=20,unique=True, verbose_name='Название!')
+    User = models.CharField(max_length=20, verbose_name='Автор статьи')
+    name = models.CharField(max_length=20, unique=True, verbose_name='Название породы')
     description = models.TextField(max_length=180, verbose_name='Описание')
     quantity = models.IntegerField(
         validators=[MinValueValidator(0, 'Quantity should be >= 0')], verbose_name='Количество')
@@ -35,7 +35,3 @@ class News(models.Model):
 
     def get_absolute_url(self):
         return f'/News/{self.id}'
-
-
-
-

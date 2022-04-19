@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Изучам Джанго</title>
+        <title>Страница пользователя {{request.user.username}}</title>
          {% load static %}
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
     </head>
@@ -27,6 +27,8 @@
                     </li>
                     <li class="nav-item">
                    <a class="nav-link" href="/News/Search/">Search</a>
+                        <li class="nav-item">
+                   <a class="nav-link" href="/News/User_edit/">auth</a>
                </li>
            </ul>
        </div>

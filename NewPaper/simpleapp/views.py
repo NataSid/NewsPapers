@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
-
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .filters import NewsFilter, SearchFilter
 from .models import *
 from .forms import NewsForm
@@ -46,16 +46,11 @@ class AddList(CreateView):
     model = News
     template_name = 'flatpages/Add.html'  #добавление
     form_class = NewsForm
-
-    def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
-        if form.is_valid():
-            form.save()
-        return super().get(request, *args, **kwargs)
+    success_url = '/News/'
 
 
 
-class NewsUpdateView(UpdateView):
+class NewsUpdateView(LoginRequiredMixin, UpdateView):
 
     template_name = 'flatpages/Create.html' #редактирование
     form_class = NewsForm
@@ -71,3 +66,12 @@ class NewsDeleteView(DeleteView):
     queryset = News.objects.all()
     success_url = '/News/'
 
+
+class DeleteNews(PermissionRequiredMixin, NewsDeleteView):
+    permission_required = ('NewPaper.delete_News',)
+
+class AddNews(PermissionRequiredMixin, AddList):
+        permission_required = ('NewPaper.Add_News',)
+
+class UpdateNews(PermissionRequiredMixin, NewsUpdateView):
+        permission_required = ('NewPaper.Update_News',)
